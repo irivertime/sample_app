@@ -58,6 +58,11 @@ describe "User pages" do
         it { should have_content(pass_blank) }
         it { should have_content(pass_short) }
         it { should have_content(conf_blank) }
+
+        it { should_not have_content(name_blank) }
+        it { should_not have_content(name_long) }
+        it { should_not have_content(email_taken) }
+        it { should_not have_content(pass_match) }
       end
       describe "after submission (name blank, email invalid, pass short )" do
         before do
@@ -71,6 +76,12 @@ describe "User pages" do
         it { should have_content(pass_short) }
         it { should have_content(conf_blank) }
         it { should have_content(pass_match) }
+
+        it { should_not have_content(name_long) }
+        it { should_not have_content(email_blank) }
+        it { should_not have_content(email_taken) }
+        it { should_not have_content(pass_blank) }
+
       end
       describe "after submission (name long, email taken, pass match )" do
         let(:user) { FactoryGirl.create(:user) }
@@ -86,6 +97,15 @@ describe "User pages" do
         it { should have_content(name_long) }
         it { should have_content(email_taken) }
         it { should have_content(pass_match) }
+
+        it { should_not have_content(name_blank) }
+        it { should_not have_content(email_blank) }
+        it { should_not have_content(email_invalid) }
+        it { should_not have_content(pass_blank) }
+        it { should_not have_content(pass_short) }
+        it { should_not have_content(conf_blank) }
+
+
       end
     end
 
