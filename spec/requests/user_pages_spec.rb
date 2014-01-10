@@ -231,4 +231,29 @@ describe "User pages" do
       specify { user.reload.email.should == new_email }
     end
   end
+
+  describe "pagination microposts" do
+    let(:user) { FactoryGirl.create(:user) }
+    before(:each) { sign_in user }
+    before(:all) { 31.times { FactoryGirl.create(:micropost, user: user) } }
+    after(:all)  { Micropost.delete_all }
+
+    describe "pagination home" do
+      before { visit root_path }
+      it { should have_selector('h3', text: 'Micropost Feed') }
+
+      pagination_microposts
+
+      describe "count microposts" do
+        it { should have_selector('aside.span4', text: user.microposts.count.to_s+" "+"micropost".pluralize(user.microposts.count)) }
+      end
+    end
+
+    describe "pagination profile" do
+      before { visit user_path(user) }
+      it { should have_selector('h3', text: 'Microposts') }
+
+      pagination_microposts
+    end
+  end
 end
