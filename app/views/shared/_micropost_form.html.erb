@@ -1,7 +1,21 @@
+<script type="text/javascript">
+$(document).ready(function() {limitTextBox("#message", "#charCount", 140);});
+
+function limitTextBox(box, charsDisplay, charactersAllowed) {
+    var $box = $(box), $charsDisplay = $(charsDisplay);
+    $charsDisplay.html(charactersAllowed - ($box.val().length));
+
+    $box.keydown(function() {
+        $charsDisplay.html(charactersAllowed - ($box.val().length));
+    });
+}
+</script>
+
 <%= form_for(@micropost) do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
-    <div class="field">
-      <%= f.text_area :content, placeholder: "Compose new micropost..." %>
+    <div class="field" id="updateTextArea">
+      <%= f.text_area :content, placeholder: "Compose new micropost...", id: "message" %>
     </div>
-    <%= f.submit "Post", class: "btn btn-large btn-primary" %>
+    <div id="charCount"></div>
+    <%= f.submit "Post", class: "btn btn-large btn-primary pull-right" %>
 <% end %>
