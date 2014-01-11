@@ -16,7 +16,7 @@
 //= require_tree .
 
 
-$(document).ready(function() {limitTextBox("#message", "#charCount", 140);});
+$(document).ready(function() {limitTextBox("#micropost_content", "#charCount", 140);});
 
 function limitTextBox(box, charsDisplay, charactersAllowed) {
     var $box = $(box), $charsDisplay = $(charsDisplay);

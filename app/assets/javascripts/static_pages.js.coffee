@@ -18,4 +18,4 @@ limitTextBox = (box, charsDisplay, charactersAllowed) ->
     change_color()
 
 $(document).ready ->
-  limitTextBox "#message", "#charCount", 140
+  limitTextBox "#micropost_content", "#charCount", 140
