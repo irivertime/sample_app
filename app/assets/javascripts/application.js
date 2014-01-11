@@ -16,4 +16,28 @@
 //= require_tree .
 
 
+$(document).ready(function() {limitTextBox("#message", "#charCount", 140);});
 
+function limitTextBox(box, charsDisplay, charactersAllowed) {
+    var $box = $(box), $charsDisplay = $(charsDisplay);
+    $charsDisplay.html(charactersAllowed - ($box.val().length));
+    change_color();
+
+    function change_color() {
+        if($box.val().length > charactersAllowed) {
+            document.getElementById("charCount").style.color="red";
+            document.getElementById("tooPost").disabled=true;
+        }
+        else{
+            document.getElementById("charCount").style.color="#333333";
+            document.getElementById("tooPost").disabled=false;
+        }
+    }
+
+    $box.on('input propertychange dragdrop', function(event) {
+        $charsDisplay.html(charactersAllowed - ($box.val().length));
+        change_color()
+
+    });
+
+}
