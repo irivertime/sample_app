@@ -2,16 +2,16 @@
 <h1>All users</h1>
 
 
-<div id="page_links">
-  <%= will_paginate %>
+<div id="page_links1">
+  <%= will_paginate @users %>
 </div>
 
 <ul class="users" id="users">
     <%= render @users %>
 </ul>
 
-<div id="page_links">
-  <%= will_paginate %>
+<div id="page_links2">
+  <%= will_paginate @users %>
 </div>
 
 
