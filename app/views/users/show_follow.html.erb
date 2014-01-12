@@ -21,10 +21,12 @@
   <div class="span8">
     <h3><%= @title %></h3>
     <% if @users.any? %>
-        <ul class="users">
+        <ul class="users" id="users">
           <%= render @users %>
         </ul>
-        <%= will_paginate %>
+        <div id="page_links">
+          <%= will_paginate %>
+        </div>
     <% end %>
   </div>
 </div>

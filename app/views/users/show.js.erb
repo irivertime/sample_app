@@ -1,0 +1,2 @@
+$("#microposts").html("<%= escape_javascript(render @microposts ) %>");
+$('#page_links').html('<%= escape_javascript(will_paginate @microposts) %>');

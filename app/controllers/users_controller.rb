@@ -10,6 +10,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @microposts = @user.microposts.paginate(page: params[:page])
+    respond_with @microposts
   end
 
   def new
@@ -40,6 +41,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @users = @user.followed_users.paginate(page: params[:page])
     render 'show_follow'
+    #respond_with @users
   end
 
   def followers
@@ -47,6 +49,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @users = @user.followers.paginate(page: params[:page])
     render 'show_follow'
+    #respond_with @users
   end
 
   def update

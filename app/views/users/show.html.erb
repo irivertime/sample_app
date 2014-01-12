@@ -15,10 +15,12 @@
     <%= render 'follow_form' if signed_in? %>
     <% if @user.microposts.any? %>
         <h3>Microposts (<%= @user.microposts.count %>)</h3>
-        <ol class="microposts">
+        <ol class="microposts" id="microposts">
           <%= render @microposts %>
         </ol>
+        <div id="page_links">
         <%= will_paginate @microposts %>
+        </div>
     <% end %>
   </div>
 </div>
