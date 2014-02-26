@@ -1,5 +1,5 @@
 class Micropost < ActiveRecord::Base
-  attr_accessible :content
+  attr_accessible :content, :status
   belongs_to :user
 
   validates :content, presence: true, length: { maximum: 140 }
@@ -12,5 +12,14 @@ class Micropost < ActiveRecord::Base
                          WHERE follower_id = :user_id"
     where("user_id IN (#{followed_user_ids}) OR user_id = :user_id",
           user_id: user.id)
+  end
+
+  def display_status
+    if self.status == 0
+      "Negative"
+    else
+      "Positive"
+    end
+
   end
 end

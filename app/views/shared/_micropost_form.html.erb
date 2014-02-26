@@ -3,6 +3,11 @@
     <div class="field">
       <%= f.text_area :content, placeholder: "Compose new micropost..." %>
     </div>
+
+    <span class="inline">
+    <%= f.select(:status,[['Positive', 1], ['Negative', 0]],{},{class:"span2"} )  %>
     <div id="charCount"></div>
     <%= f.submit "Post", class: "btn btn-large btn-primary pull-right", id:"tooPost" %>
+    </span>
+
 <% end %>

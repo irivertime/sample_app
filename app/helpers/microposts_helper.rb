@@ -3,6 +3,13 @@ module MicropostsHelper
   def wrap(content)
     sanitize(raw(content.split.map{ |s| wrap_long_string(s) }.join(' ')))
   end
+  def display_status_class(status)
+    if status == 0
+      "label-important"
+    else
+      "label-success"
+    end
+  end
 
   private
 
